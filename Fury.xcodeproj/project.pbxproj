@@ -13,6 +13,8 @@
 		C8F9C7C01D771624004E1762 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F9C7BE1D771624004E1762 /* Main.storyboard */; };
 		C8F9C7C21D771624004E1762 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8F9C7C11D771624004E1762 /* Assets.xcassets */; };
 		C8F9C7C51D771624004E1762 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F9C7C31D771624004E1762 /* LaunchScreen.storyboard */; };
+		C8F9C7D71D773D39004E1762 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9C7D61D773D39004E1762 /* Orders.swift */; };
+		C8F9C7D91D7751DF004E1762 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9C7D81D7751DF004E1762 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		C8F9C7C11D771624004E1762 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8F9C7C41D771624004E1762 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C8F9C7C61D771624004E1762 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8F9C7D61D773D39004E1762 /* Orders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
+		C8F9C7D81D7751DF004E1762 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 		C8F9C7B71D771624004E1762 /* Fury */ = {
 			isa = PBXGroup;
 			children = (
+				C8F9C7D51D773D1C004E1762 /* Model */,
 				C8F9C7B81D771624004E1762 /* AppDelegate.swift */,
 				C8F9C7BA1D771624004E1762 /* FirstViewController.swift */,
 				C8F9C7BC1D771624004E1762 /* SecondViewController.swift */,
@@ -65,6 +70,15 @@
 				C8F9C7C61D771624004E1762 /* Info.plist */,
 			);
 			path = Fury;
+			sourceTree = "<group>";
+		};
+		C8F9C7D51D773D1C004E1762 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C8F9C7D61D773D39004E1762 /* Orders.swift */,
+				C8F9C7D81D7751DF004E1762 /* Constants.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +152,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8F9C7D91D7751DF004E1762 /* Constants.swift in Sources */,
 				C8F9C7BD1D771624004E1762 /* SecondViewController.swift in Sources */,
+				C8F9C7D71D773D39004E1762 /* Orders.swift in Sources */,
 				C8F9C7B91D771624004E1762 /* AppDelegate.swift in Sources */,
 				C8F9C7BB1D771624004E1762 /* FirstViewController.swift in Sources */,
 			);
