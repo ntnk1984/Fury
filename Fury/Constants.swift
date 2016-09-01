@@ -12,6 +12,6 @@ class Constants {
     
     // MARK: List of Constants
     
-    static let baseUrl = "http://192.168.159.1/api.cinema/api/"
+    static let baseUrl = "http://192.168.159.1/GNAPI/api/"
     
 }
