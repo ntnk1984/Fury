@@ -9,7 +9,8 @@
 import UIKit
 
 
-class FirstViewController: UIViewController {
+class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
+    @IBOutlet weak var scrollView: UIScrollView!
 
     @IBOutlet weak var ngaydatTextField: UITextField!
     
@@ -25,16 +26,147 @@ class FirstViewController: UIViewController {
     
     @IBOutlet weak var tongcongTextField: UITextField!
     
+    var datePicker: UIDatePicker!
+    
+    /*
+    override func viewWillAppear(animated: Bool) {
+        self.startKeyboardObserver()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.stopKeyboardObserver()
+    }
+    
+    
+    private func startKeyboardObserver(){
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil) //WillShow and not Did ;) The View will run animated and smooth
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    private func stopKeyboardObserver() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let keyboardSize: CGSize =    userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+                let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height,  0.0);
+                
+                self.scrollView.contentInset = contentInset
+                self.scrollView.scrollIndicatorInsets = contentInset
+                
+                self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, 0 + keyboardSize.height) //set zero instead self.scrollView.contentOffset.y
+                
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        let contentInset = UIEdgeInsetsZero;
+        
+        self.scrollView.contentInset = contentInset
+        self.scrollView.scrollIndicatorInsets = contentInset
+        self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y)
+    }
+    */
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    @IBAction func ngaydatEdit(sender: UITextField) {
+        /*
+        datePicker = UIDatePicker()
+        datePicker.datePickerMode = UIDatePickerMode.Date
+        sender.inputView = datePicker
+        datePicker.addTarget(self, action: "datePickerChanged:", forControlEvents: .ValueChanged)
+        */
+        
+        //Create the view
+        let inputView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 240))
+        
+        
+        datePicker = UIDatePicker(frame: CGRectMake(0, 40, 0, 0))
+        datePicker.datePickerMode = UIDatePickerMode.Date
+        inputView.addSubview(datePicker) // add date picker to UIView
+        
+        let doneButton = UIButton(frame: CGRectMake((self.view.frame.size.width/2) - (100/2), 0, 100, 50))
+        doneButton.setTitle("Chọn", forState: UIControlState.Normal)
+        doneButton.setTitle("Chọn", forState: UIControlState.Highlighted)
+        doneButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        doneButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Highlighted)
+        
+        inputView.addSubview(doneButton) // add Button to UIView
+        
+        doneButton.addTarget(self, action: "doneButton:", forControlEvents: UIControlEvents.TouchUpInside) // set button click event
+        
+        sender.inputView = inputView
+        datePicker.addTarget(self, action: Selector("handleDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
+        
+        handleDatePicker(datePicker) // Set the date on start.
+
+    }
+    
+    func handleDatePicker(sender: UIDatePicker) {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        ngaydatTextField.text = dateFormatter.stringFromDate(sender.date)
+    }
+    
+    func doneButton(sender:UIButton)
+    {
+        datePicker.resignFirstResponder()
+        ngaydatTextField.resignFirstResponder()
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if textField == tongcongTextField || textField == tienshipTextField {
+            scrollView.setContentOffset(CGPointMake(0, 30), animated: true)
+        }
+        
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+    }
+    
+    func closeKeyboard(){
+        self.view.endEditing(true)
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        closeKeyboard()
+        datePicker.removeFromSuperview()
+    }
+    
+    func datePickerChanged(sender: UIDatePicker) {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MM-dd-yyyy"
+        ngaydatTextField.text = formatter.stringFromDate(sender.date)
+        self.view.endEditing(true)
+        datePicker.removeFromSuperview()
+    }
+    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view, typically from a nib.
-        
+        ngaydatTextField.delegate = self
+        soluongTextField.delegate = self
+        nguoidatTextField.delegate = self
+        diachiTextField.delegate = self
+        dienthoaiTextField.delegate = self
+        giabanleTextField.delegate = self
+        tienshipTextField.delegate = self
+        tongcongTextField.delegate = self
         
         
         
     }
-
+   
+    
     @IBAction func addPO(sender: UIButton) {
         self.data_request()
     }
