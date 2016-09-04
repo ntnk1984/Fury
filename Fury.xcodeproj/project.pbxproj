@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C8F969731D7B0CE60071C66A /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F969721D7B0CE60071C66A /* OrderTableViewCell.swift */; };
+		C8F969751D7B1A030071C66A /* ShippingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F969741D7B1A030071C66A /* ShippingViewController.swift */; };
+		C8F969771D7B1A150071C66A /* ShippingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F969761D7B1A150071C66A /* ShippingDetailViewController.swift */; };
+		C8F969791D7B1A950071C66A /* CashReturnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F969781D7B1A950071C66A /* CashReturnViewController.swift */; };
+		C8F9697B1D7B1AA30071C66A /* CashDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9697A1D7B1AA30071C66A /* CashDetailViewController.swift */; };
+		C8F9697D1D7B1B0D0071C66A /* ShippingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9697C1D7B1B0D0071C66A /* ShippingTableViewCell.swift */; };
 		C8F9C7B91D771624004E1762 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9C7B81D771624004E1762 /* AppDelegate.swift */; };
-		C8F9C7BB1D771624004E1762 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9C7BA1D771624004E1762 /* FirstViewController.swift */; };
-		C8F9C7BD1D771624004E1762 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9C7BC1D771624004E1762 /* SecondViewController.swift */; };
+		C8F9C7BB1D771624004E1762 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9C7BA1D771624004E1762 /* OrderViewController.swift */; };
+		C8F9C7BD1D771624004E1762 /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9C7BC1D771624004E1762 /* PurchaseViewController.swift */; };
 		C8F9C7C01D771624004E1762 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F9C7BE1D771624004E1762 /* Main.storyboard */; };
 		C8F9C7C21D771624004E1762 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8F9C7C11D771624004E1762 /* Assets.xcassets */; };
 		C8F9C7C51D771624004E1762 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F9C7C31D771624004E1762 /* LaunchScreen.storyboard */; };
@@ -18,10 +24,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C8F969721D7B0CE60071C66A /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
+		C8F969741D7B1A030071C66A /* ShippingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShippingViewController.swift; sourceTree = "<group>"; };
+		C8F969761D7B1A150071C66A /* ShippingDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShippingDetailViewController.swift; sourceTree = "<group>"; };
+		C8F969781D7B1A950071C66A /* CashReturnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashReturnViewController.swift; sourceTree = "<group>"; };
+		C8F9697A1D7B1AA30071C66A /* CashDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashDetailViewController.swift; sourceTree = "<group>"; };
+		C8F9697C1D7B1B0D0071C66A /* ShippingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShippingTableViewCell.swift; sourceTree = "<group>"; };
 		C8F9C7B51D771624004E1762 /* Fury.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fury.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8F9C7B81D771624004E1762 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C8F9C7BA1D771624004E1762 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		C8F9C7BC1D771624004E1762 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		C8F9C7BA1D771624004E1762 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		C8F9C7BC1D771624004E1762 /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
 		C8F9C7BF1D771624004E1762 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C8F9C7C11D771624004E1762 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8F9C7C41D771624004E1762 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -62,12 +74,18 @@
 			children = (
 				C8F9C7D51D773D1C004E1762 /* Model */,
 				C8F9C7B81D771624004E1762 /* AppDelegate.swift */,
-				C8F9C7BA1D771624004E1762 /* FirstViewController.swift */,
-				C8F9C7BC1D771624004E1762 /* SecondViewController.swift */,
+				C8F9C7BA1D771624004E1762 /* OrderViewController.swift */,
+				C8F9C7BC1D771624004E1762 /* PurchaseViewController.swift */,
 				C8F9C7BE1D771624004E1762 /* Main.storyboard */,
 				C8F9C7C11D771624004E1762 /* Assets.xcassets */,
 				C8F9C7C31D771624004E1762 /* LaunchScreen.storyboard */,
 				C8F9C7C61D771624004E1762 /* Info.plist */,
+				C8F969721D7B0CE60071C66A /* OrderTableViewCell.swift */,
+				C8F969741D7B1A030071C66A /* ShippingViewController.swift */,
+				C8F969761D7B1A150071C66A /* ShippingDetailViewController.swift */,
+				C8F969781D7B1A950071C66A /* CashReturnViewController.swift */,
+				C8F9697A1D7B1AA30071C66A /* CashDetailViewController.swift */,
+				C8F9697C1D7B1B0D0071C66A /* ShippingTableViewCell.swift */,
 			);
 			path = Fury;
 			sourceTree = "<group>";
@@ -152,11 +170,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8F9697D1D7B1B0D0071C66A /* ShippingTableViewCell.swift in Sources */,
+				C8F969731D7B0CE60071C66A /* OrderTableViewCell.swift in Sources */,
 				C8F9C7D91D7751DF004E1762 /* Constants.swift in Sources */,
-				C8F9C7BD1D771624004E1762 /* SecondViewController.swift in Sources */,
+				C8F969751D7B1A030071C66A /* ShippingViewController.swift in Sources */,
+				C8F9C7BD1D771624004E1762 /* PurchaseViewController.swift in Sources */,
+				C8F9697B1D7B1AA30071C66A /* CashDetailViewController.swift in Sources */,
 				C8F9C7D71D773D39004E1762 /* Orders.swift in Sources */,
+				C8F969771D7B1A150071C66A /* ShippingDetailViewController.swift in Sources */,
 				C8F9C7B91D771624004E1762 /* AppDelegate.swift in Sources */,
-				C8F9C7BB1D771624004E1762 /* FirstViewController.swift in Sources */,
+				C8F969791D7B1A950071C66A /* CashReturnViewController.swift in Sources */,
+				C8F9C7BB1D771624004E1762 /* OrderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +332,7 @@
 				C8F9C7CB1D771624004E1762 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

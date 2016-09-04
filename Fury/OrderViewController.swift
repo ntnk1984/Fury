@@ -9,7 +9,7 @@
 import UIKit
 
 
-class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
+class OrderViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
 
     @IBOutlet weak var ngaydatTextField: UITextField!
@@ -248,13 +248,20 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
                                                                                         print("Could not get JSON from responseData as dictionary")
                                                                                         return
                 }
-                print("The todo is: " + receivedTodo.description)
-                
-                guard let todoID = receivedTodo["id"] as? String else {
+                if ((receivedTodo["id"] as? String) != nil){
+                    self.ngaydatTextField.text = ""
+                    self.soluongTextField.text = ""
+                    self.nguoidatTextField.text = ""
+                    self.diachiTextField.text = ""
+                    self.dienthoaiTextField.text = ""
+                    self.giabanleTextField.text = ""
+                    self.tienshipTextField.text = ""
+                    self.tongcongTextField.text = ""
+                }else {
                     print("Could not get todoID as int from JSON")
                     return
                 }
-                print("The ID is: \(todoID)")
+                
             } catch  {
                 print("error parsing response from POST on /todos")
                 return

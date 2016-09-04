@@ -9,7 +9,7 @@
 import Foundation
 
 class Orders {
-    var id: String?
+    var OrderId: String?
     var ngay_dat: String?
     var ma_sp: String?
     var so_luong: String?
