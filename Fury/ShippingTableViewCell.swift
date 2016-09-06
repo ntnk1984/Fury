@@ -10,6 +10,11 @@ import UIKit
 
 class ShippingTableViewCell: UITableViewCell {
 
+    
+    @IBOutlet weak var lblNguoiDat: UILabel!
+    @IBOutlet weak var lblNgayDat: UILabel!
+    @IBOutlet weak var lblTongCong: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -31,14 +31,21 @@ class PurchaseViewController: UIViewController, UITableViewDataSource, UITableVi
             // Check if data was received successfully
             if error == nil && data != nil {
                 do {
-                    // Convert NSData to Dictionary where keys are of type String, and values are of any type
-                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! [String:AnyObject]
+                    //var dataString = NSString(data: data!, encoding:NSUTF8StringEncoding)
+                    
+                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? [Orders]
+                    
+                    self.orderList = json!
                     // Access specific key with value of type String
                     
-                    let ord = Orders()
-                    ord.nguoi_dat = json["nguoi_dat"] as? String
-                    ord.ngay_dat = json["ngay_dat"] as? String
-                    ord.tong_cong = json["tong_cong"] as? String
+                    /*
+                    for ord:Orders in json! {
+                        //let ord = Orders()
+                        ord.nguoi_dat = ord//json["nguoi_dat"] as? String
+                        ord.ngay_dat = json["ngay_dat"] as? String
+                        ord.tong_cong = json["tong_cong"] as? String
+                    }
+                    */
                     
                     
                 } catch {
@@ -68,6 +75,18 @@ class PurchaseViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.lblTongCong.text = ord.tong_cong
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let detailView = self.storyboard!.instantiateViewControllerWithIdentifier("PurchaseDetailViewController") as! PurchaseDetailViewController
+        
+        //Pass data
+        let currentItem = self.orderList[indexPath.row]
+        
+        detailView.currentItem = currentItem;
+        //push view
+        self.navigationController!.pushViewController(detailView, animated: true)
+        
     }
 
 }

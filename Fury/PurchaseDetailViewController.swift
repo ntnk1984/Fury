@@ -1,25 +1,28 @@
 //
-//  ShippingDetailViewController.swift
+//  PurchaseDetailViewController.swift
 //  Fury
 //
-//  Created by Nguyen Khang on 9/3/16.
+//  Created by Nguyen Khang on 9/4/16.
 //  Copyright © 2016 kstorevn. All rights reserved.
 //
 
 import UIKit
 
-class ShippingDetailViewController: UIViewController {
+class PurchaseDetailViewController: UIViewController {
 
     var currentItem: Orders?
-    
+    @IBOutlet weak var lblTongCong: UILabel!
     @IBOutlet weak var lblNguoiDat: UILabel!
     @IBOutlet weak var lblNgayDat: UILabel!
-    @IBOutlet weak var lblTongCong: UILabel!
+    @IBOutlet weak var tongcongTextField: UITextField!
     
+    @IBOutlet weak var ngaymuaTextField: UITextField!
     
-    @IBOutlet weak var ngayguiTextField: UITextField!
-    @IBOutlet weak var cuocTextField: UITextField!
-    @IBOutlet weak var sohieuTextField: UITextField!
+    @IBOutlet weak var giamuaTextField: UITextField!
+    
+    @IBOutlet weak var phishipTextField: UITextField!
+    @IBOutlet weak var phinganhangTextField: UITextField!
+    
     
     @IBAction func save(sender: UIButton) {
         
@@ -28,7 +31,7 @@ class ShippingDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
