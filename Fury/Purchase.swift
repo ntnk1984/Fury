@@ -12,6 +12,6 @@ class Purchase {
     var PurchaseId: String?
     var OrderId: String?
     var so_hieu: String?
-    var ngay_gui: String?
+    var ngay_mua: String?
     var tong_cong: Float?
 }

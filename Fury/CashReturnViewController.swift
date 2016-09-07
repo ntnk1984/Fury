@@ -11,8 +11,8 @@ import UIKit
 class CashReturnViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
 
     @IBOutlet weak var lblTongTien: UILabel!
-    var purchaseList = [Purchase]()
-    var selectedList = [Purchase]()
+    var shippingList = [Shipping]()
+    var selectedList = [Shipping]()
     
     let identifier = "cell_id"
     
@@ -23,26 +23,47 @@ class CashReturnViewController: UIViewController,UICollectionViewDataSource,UICo
 
         self.collectionView.delegate = self
         
-        let p1 = Purchase()
-        p1.so_hieu = "156879987654"
-        p1.ngay_gui = "2/9/2016"
-        p1.tong_cong = 510000
-        
-        let p2 = Purchase()
-        p2.so_hieu = "156879987654"
-        p2.ngay_gui = "2/9/2016"
-        p2.tong_cong = 510000
-
-        
-        
-        purchaseList.append(p1)
-        purchaseList.append(p2)
-        
         self.collectionView.allowsMultipleSelection = true
-        self.collectionView.reloadData()
+        
+        getShippingForCashReturn()
+        
         
     }
 
+    func getShippingForCashReturn(){
+        NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: String(format: "%@%@", Constants.baseUrl, "getShippingForCashReturn"))!, completionHandler: { (data, response, error) -> Void in
+            // Check if data was received successfully
+            if error == nil && data != nil {
+                do {
+                    //var dataString = NSString(data: data!, encoding:NSUTF8StringEncoding)
+                    
+                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! [AnyObject]
+                    
+                    //self.shippingList = json!
+                    // Access specific key with value of type String
+                    
+                    
+                     for dic:AnyObject in json {
+                        let ord = Shipping()
+                        ord.so_hieu = (dic as! NSDictionary)["so_hieu"] as? String
+
+                        //ord.ngay_dat = (dic as! NSDictionary)["nguoi_dat"] as? String
+                        ord.tri_gia = (dic as! NSDictionary)["tri_gia"] as? Float
+                        
+                        self.shippingList.append(ord)
+                     }
+                    
+                    self.collectionView.reloadData()
+
+                    
+                } catch {
+                    // Something went wrong
+                }
+            }
+        }).resume()
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -53,7 +74,7 @@ class CashReturnViewController: UIViewController,UICollectionViewDataSource,UICo
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.purchaseList.count
+        return self.shippingList.count
     }
     
     
@@ -62,10 +83,10 @@ class CashReturnViewController: UIViewController,UICollectionViewDataSource,UICo
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as! CashCollectionViewCell
         
         
-        let currentPurchase = purchaseList[indexPath.row]
-        cell.lblSo_hieu.text = currentPurchase.so_hieu
-        cell.lblNgayGui.text = currentPurchase.ngay_gui
-        cell.lblTongCong.text = NSNumberFormatter.localizedStringFromNumber(currentPurchase.tong_cong!, numberStyle: NSNumberFormatterStyle.DecimalStyle)
+        let currentShipping = shippingList[indexPath.row]
+        cell.lblSo_hieu.text = currentShipping.so_hieu
+        //cell.lblNgayGui.text = currentShipping.ngay_gui
+        cell.lblTongCong.text = NSNumberFormatter.localizedStringFromNumber(currentShipping.tri_gia!, numberStyle: NSNumberFormatterStyle.DecimalStyle)
         return cell
     }
     
@@ -80,7 +101,7 @@ class CashReturnViewController: UIViewController,UICollectionViewDataSource,UICo
         let cell : UICollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath)!
         cell.backgroundColor = UIColor.redColor()
         
-        self.selectedList.append(self.purchaseList[indexPath.row])
+        self.selectedList.append(self.shippingList[indexPath.row])
         
         calAmount()
     }
@@ -97,8 +118,8 @@ class CashReturnViewController: UIViewController,UICollectionViewDataSource,UICo
     func calAmount(){
         var Amount: Float = 0.0
         
-        for pu:Purchase in self.selectedList {
-            Amount = Amount + pu.tong_cong!
+        for pu:Shipping in self.selectedList {
+            Amount = Amount + pu.tri_gia!
         }
         
         self.lblTongTien.text = NSNumberFormatter.localizedStringFromNumber(Amount, numberStyle: NSNumberFormatterStyle.DecimalStyle)

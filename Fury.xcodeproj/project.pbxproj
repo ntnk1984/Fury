@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C85FE1CC1D7F4160005E3EED /* Shipping.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85FE1CB1D7F4160005E3EED /* Shipping.swift */; };
 		C8F969731D7B0CE60071C66A /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F969721D7B0CE60071C66A /* OrderTableViewCell.swift */; };
 		C8F969751D7B1A030071C66A /* ShippingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F969741D7B1A030071C66A /* ShippingViewController.swift */; };
 		C8F969771D7B1A150071C66A /* ShippingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F969761D7B1A150071C66A /* ShippingDetailViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C85FE1CB1D7F4160005E3EED /* Shipping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shipping.swift; sourceTree = "<group>"; };
 		C8F969721D7B0CE60071C66A /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		C8F969741D7B1A030071C66A /* ShippingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShippingViewController.swift; sourceTree = "<group>"; };
 		C8F969761D7B1A150071C66A /* ShippingDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShippingDetailViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				C8F9C7D61D773D39004E1762 /* Orders.swift */,
 				C8F9C7D81D7751DF004E1762 /* Constants.swift */,
 				C8F969821D7C675F0071C66A /* Purchase.swift */,
+				C85FE1CB1D7F4160005E3EED /* Shipping.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				C8F969771D7B1A150071C66A /* ShippingDetailViewController.swift in Sources */,
 				C8F9C7B91D771624004E1762 /* AppDelegate.swift in Sources */,
 				C8F969791D7B1A950071C66A /* CashReturnViewController.swift in Sources */,
+				C85FE1CC1D7F4160005E3EED /* Shipping.swift in Sources */,
 				C8F9697F1D7C52490071C66A /* PurchaseDetailViewController.swift in Sources */,
 				C8F9C7BB1D771624004E1762 /* OrderViewController.swift in Sources */,
 			);
