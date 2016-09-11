@@ -16,7 +16,7 @@ class Orders {
     var mau_sac: String?
     var gia_ban_le: String?
     var tien_ship: String?
-    var tong_cong: String?
+    var tong_cong: Float?
     var nguoi_dat: String?
     var dien_thoai: String?
     var trang_thai: String?

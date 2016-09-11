@@ -1,14 +1,14 @@
 //
-//  CashDetailViewController.swift
+//  TestViewController.swift
 //  Fury
 //
-//  Created by Nguyen Khang on 9/3/16.
+//  Created by Nguyen Khang on 9/8/16.
 //  Copyright © 2016 kstorevn. All rights reserved.
 //
 
 import UIKit
 
-class CashDetailViewController: UIViewController {
+class TestViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,7 @@ class CashDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBOutlet weak var lbl: UILabel!
 
     /*
     // MARK: - Navigation
@@ -31,5 +32,9 @@ class CashDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    
+    
 
 }

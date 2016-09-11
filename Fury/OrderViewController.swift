@@ -123,7 +123,7 @@ class OrderViewController: UIViewController, UITextFieldDelegate, UIScrollViewDe
     
     func textFieldDidBeginEditing(textField: UITextField) {
         if textField == tongcongTextField || textField == tienshipTextField {
-            scrollView.setContentOffset(CGPointMake(0, 30), animated: true)
+            scrollView.setContentOffset(CGPointMake(0, 50), animated: true)
         }
         
     }

@@ -11,11 +11,13 @@ import UIKit
 class PurchaseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var orderList = [Orders]()
+    var selectedList = NSMutableArray()
     
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.definesPresentationContext = true
         getOrderForPurchase()
         
         
@@ -26,26 +28,43 @@ class PurchaseViewController: UIViewController, UITableViewDataSource, UITableVi
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func buy(sender: UIButton) {
+        
+        
+        let detailView = self.storyboard!.instantiateViewControllerWithIdentifier("PurchaseDetailViewController") as! PurchaseDetailViewController
+        
+        
+        self.navigationController!.pushViewController(detailView, animated: true)
+        
+    }
+
+
+
     func getOrderForPurchase(){
-        NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: String(format: "%@%@", Constants.baseUrl, "Orders"))!, completionHandler: { (data, response, error) -> Void in
+        NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: String(format: "%@%@", Constants.baseUrl, "getOrderForPurchase_Result"))!, completionHandler: { (data, response, error) -> Void in
             // Check if data was received successfully
             if error == nil && data != nil {
                 do {
-                    //var dataString = NSString(data: data!, encoding:NSUTF8StringEncoding)
+                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! [AnyObject]
                     
-                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? [Orders]
-                    
-                    self.orderList = json!
-                    // Access specific key with value of type String
-                    
-                    /*
-                    for ord:Orders in json! {
-                        //let ord = Orders()
-                        ord.nguoi_dat = ord//json["nguoi_dat"] as? String
-                        ord.ngay_dat = json["ngay_dat"] as? String
-                        ord.tong_cong = json["tong_cong"] as? String
+                    for dic:AnyObject in json {
+                        let ord = Orders()
+                        ord.nguoi_dat = (dic as! NSDictionary)["nguoi_dat"] as? String
+                        ord.ngay_dat = (dic as! NSDictionary)["ngay_dat"] as? String
+                        ord.tong_cong = (dic as! NSDictionary)["tong_cong"] as? Float
+                        ord.OrderId = (dic as! NSDictionary)["id"] as? String
+                        
+                        self.orderList.append(ord)
                     }
-                    */
+                    
+                    let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+                    dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.tableView.reloadData()
+                        }
+                    }
+                    
                     
                     
                 } catch {
@@ -54,6 +73,7 @@ class PurchaseViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }).resume()
     }
+
     
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -70,9 +90,12 @@ class PurchaseViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let ord = orderList[indexPath.row]
         
+        if (ord.tong_cong != nil) {
+            cell.lblTongCong.text = NSNumberFormatter.localizedStringFromNumber(ord.tong_cong!, numberStyle: NSNumberFormatterStyle.DecimalStyle)
+        }
         cell.lblNguoiDat.text = ord.nguoi_dat
         cell.lblNgayDat.text = ord.ngay_dat
-        cell.lblTongCong.text = ord.tong_cong
+        
         
         return cell
     }
@@ -88,6 +111,9 @@ class PurchaseViewController: UIViewController, UITableViewDataSource, UITableVi
         self.navigationController!.pushViewController(detailView, animated: true)
         
     }
+    
+    
+    
 
 }
 

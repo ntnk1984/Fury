@@ -10,12 +10,14 @@ import UIKit
 
 class ShippingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
 
-    var orderList = [Orders]()
+    var purchaseList = [Purchase]()
     
-    override func viewDidLoad() {
+    @IBOutlet weak var tableView: UITableView!
+    
+        override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        getPurchaseForShipping()
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,26 +25,32 @@ class ShippingViewController: UIViewController, UITableViewDataSource, UITableVi
         // Dispose of any resources that can be recreated.
     }
     
-    func getOrderForPurchase(){
-        NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: String(format: "%@%@", Constants.baseUrl, "Orders"))!, completionHandler: { (data, response, error) -> Void in
+    func getPurchaseForShipping(){
+        NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: String(format: "%@%@", Constants.baseUrl, "getPurchaseForShipping"))!, completionHandler: { (data, response, error) -> Void in
             // Check if data was received successfully
             if error == nil && data != nil {
                 do {
-                    //var dataString = NSString(data: data!, encoding:NSUTF8StringEncoding)
+                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! [AnyObject]
                     
-                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? [Orders]
+                    for dic:AnyObject in json {
+                        let ord = Purchase()
+                        ord.ngay_mua = (dic as! NSDictionary)["ngay_mua"] as? String
+                        ord.gia_mua = (dic as! NSDictionary)["gia_mua"] as? Float
+                        ord.phi_ship = (dic as! NSDictionary)["phi_ship"] as? Float
+                        ord.phi_ngan_hang = (dic as! NSDictionary)["phi_ngan_hang"] as? Float
+                        ord.tong_cong = (dic as! NSDictionary)["tong_cong"] as? Float
+                        
+                        self.purchaseList.append(ord)
+                    }
                     
-                    self.orderList = json!
-                    // Access specific key with value of type String
+                    let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+                    dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.tableView.reloadData()
+                        }
+                    }
                     
-                    /*
-                     for ord:Orders in json! {
-                     //let ord = Orders()
-                     ord.nguoi_dat = ord//json["nguoi_dat"] as? String
-                     ord.ngay_dat = json["ngay_dat"] as? String
-                     ord.tong_cong = json["tong_cong"] as? String
-                     }
-                     */
                     
                     
                 } catch {
@@ -51,7 +59,6 @@ class ShippingViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }).resume()
     }
-
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -59,17 +66,19 @@ class ShippingViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orderList.count
+        return purchaseList.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell_id", forIndexPath: indexPath) as! OrderTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell_id", forIndexPath: indexPath) as! PurchaseTableViewCell
         
-        let ord = orderList[indexPath.row]
+        let ord = purchaseList[indexPath.row]
         
-        cell.lblNguoiDat.text = ord.nguoi_dat
-        cell.lblNgayDat.text = ord.ngay_dat
-        cell.lblTongCong.text = ord.tong_cong
+        cell.lblNgayMua.text = ord.ngay_mua
+        cell.lblGiaMua.text = NSNumberFormatter.localizedStringFromNumber(ord.gia_mua!, numberStyle: NSNumberFormatterStyle.DecimalStyle)
+        cell.lblPhiShip.text = NSNumberFormatter.localizedStringFromNumber(ord.phi_ship!, numberStyle: NSNumberFormatterStyle.DecimalStyle)
+        cell.lblPhiNganHang.text = NSNumberFormatter.localizedStringFromNumber(ord.phi_ngan_hang!, numberStyle: NSNumberFormatterStyle.DecimalStyle)
+        cell.lblTongCong.text = NSNumberFormatter.localizedStringFromNumber(ord.tong_cong!, numberStyle: NSNumberFormatterStyle.DecimalStyle)
         
         return cell
     }
@@ -78,7 +87,7 @@ class ShippingViewController: UIViewController, UITableViewDataSource, UITableVi
         let detailView = self.storyboard!.instantiateViewControllerWithIdentifier("ShippingDetailViewController") as! ShippingDetailViewController
         
         //Pass data
-        let currentItem = self.orderList[indexPath.row]
+        let currentItem = self.purchaseList[indexPath.row]
         
         detailView.currentItem = currentItem;
         //push view
